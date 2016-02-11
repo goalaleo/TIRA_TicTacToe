@@ -64,6 +64,23 @@ public class Fingerprint {
      * is a subset of the Fingerprints of the next level.
      */
     protected int level;
+    /**
+     * whether or not the Fingerprint is symmetrical over the horizontal axis (axis trought nums 4,5 and 6)
+     */
+    public boolean horizontal_symmetry;
+    /**
+     * whether or not the Fingerprint is symmetrical over the vertical axis (axis trought nums 8,5 and 2)
+     */
+    public boolean vertical_symmetry;
+    /**
+     * whether or not the Fingerprint is symmetrical over the first diagonal axis (axis trought nums 7,5 and 3)
+     */
+    public boolean diagonal_1_symmetry;
+    /**
+     * whether or not the Fingerprint is symmetrical over the second diagonal axis (axis trought nums 1,5 and 9)
+     */
+    public boolean diagonal_2_symmetry;
+    
 /**
  * A Constructor for creating a Fingerprint.
  * @param id unique indentifier of the unique Fingerprint
@@ -108,6 +125,8 @@ public class Fingerprint {
                     break;
             }
         }
+        calculateSymmetries();
+        
     }
 
     /**
@@ -117,6 +136,15 @@ public class Fingerprint {
     @Override
     public String toString() {
         return Integer.toString(id);
+    }
+/**
+ * calculates and assings a boolean value for the symmetry fields
+ */
+    private void calculateSymmetries() {
+        horizontal_symmetry = (num7 == num1 && num8 == num2 && num9 == num3);
+        vertical_symmetry = (num7 == num9 && num4 == num6 && num1 == num3);
+        diagonal_1_symmetry = (num4 == num8 && num1 == num9 && num2 == num6);
+        diagonal_2_symmetry = (num8 == num6 && num7 == num3 && num4 == num3);
     }
   
 }

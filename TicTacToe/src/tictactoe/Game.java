@@ -22,7 +22,7 @@ public class Game {
     /**
      * and array of all unique {@link Fingerprint}s
      */
-    protected Fingerprint[] fingerprints;
+    public Fingerprint[] fingerprints;
     /**
      * the calculated gamestate, which is the concatenation/multiplication of
      * the misère quotients of the 3 {@link Board}s.
@@ -35,11 +35,12 @@ public class Game {
      */
     public Game(){
         
-        this.board1 = new Board(1);
-        this.board2 = new Board(2);
-        this.board3 = new Board(3);
-        
         this.fingerprints = createFingerprintLibrary();
+        
+        this.board1 = new Board(1,fingerprints[0]);
+        this.board2 = new Board(2,fingerprints[0]);
+        this.board3 = new Board(3,fingerprints[0]);
+        
     }
     
     /**

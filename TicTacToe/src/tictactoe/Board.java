@@ -47,17 +47,18 @@ public class Board {
     /**
      * the id of the Fingerprint, that matches the current board situation
      */
-    protected int matching_fingerprint_id;
+    protected Fingerprint matching_fingerprint;
     int boardNumber;
     
     /**
      * A Constructor for creating a Board, of which 3 exist in the game. When created,
      * the {@link #matching_fingerprint_id} field is set to 0 indicating an empty Board
      * @param boardNumber the number of the board (1-3) of which 1 is the leftmost
+     * @param matching_fingerprint is the {@link Fingerprint} in the fingerprints library that matches the current Board configuration
      * 
      */
-     public Board(int boardNumber){
-         this.matching_fingerprint_id = 0;
+     public Board(int boardNumber, Fingerprint matching_fingerprint){
+         this.matching_fingerprint = matching_fingerprint;
          this.boardNumber = boardNumber;
      }
 }
