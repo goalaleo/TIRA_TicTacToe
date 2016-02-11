@@ -15,50 +15,50 @@ public class Fingerprint {
      * whether or not the position in the board contains an X. Refers to corresponding
      * position of the number in the numpad (ie. num7 refers to top left corner)
      */
-    protected boolean num7 = false;
+    public boolean num7 = false;
     /**
      * @see #num7
      */
-    protected boolean num8 = false;
+    public boolean num8 = false;
     /**
      * @see #num7
      */
-    protected boolean num9 = false;
+    public boolean num9 = false;
     /**
      * @see #num7
      */
-    protected boolean num4 = false;
+    public boolean num4 = false;
     /**
      * @see #num7
      */
-    protected boolean num5 = false;
+    public boolean num5 = false;
     /**
      * @see #num7
      */
-    protected boolean num6 = false;
+    public boolean num6 = false;
     /**
      * @see #num7
      */
-    protected boolean num1 = false;
+    public boolean num1 = false;
     /**
      * @see #num7
      */
-    protected boolean num2 = false;
+    public boolean num2 = false;
     /**
      * @see #num7
      */
-    protected boolean num3 = false;
+    public boolean num3 = false;
     /**
      * unique identifier for a Fingerprint.
      * Count starts from 0 and increases from left to right and top to bottom
      * as given in the Notakto Table image in the "Dokumentaatio" -folder of the repository.
      */
-    protected int id;
+    public int id;
     /**
      * the misère quotient of the Fingerprint as given in the Notakto Table in the "Dokumentaatio" -folder of
      * the repository.
      */
-    protected String value;
+    public String value;
     /**
      * the number of X's in the Fingerprint. Possible following configurations of the board (Fingerprints)
      * is a subset of the Fingerprints of the next level.
@@ -144,7 +144,7 @@ public class Fingerprint {
         horizontal_symmetry = (num7 == num1 && num8 == num2 && num9 == num3);
         vertical_symmetry = (num7 == num9 && num4 == num6 && num1 == num3);
         diagonal_1_symmetry = (num4 == num8 && num1 == num9 && num2 == num6);
-        diagonal_2_symmetry = (num8 == num6 && num7 == num3 && num4 == num3);
+        diagonal_2_symmetry = (num8 == num6 && num7 == num3 && num4 == num2);
     }
   
 }

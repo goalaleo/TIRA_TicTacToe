@@ -118,7 +118,7 @@ public class Game {
         fingerprints[50] = new Fingerprint(50,"a",new int[] {8,4,6,2});
         // Level 5
         fingerprints[51] = new Fingerprint(51,"1",new int[] {7,8,9,4,5});
-        fingerprints[52] = new Fingerprint(52,"1",new int[] {7,8,9,5,6});
+        fingerprints[52] = new Fingerprint(52,"1",new int[] {7,8,9,4,6});
         fingerprints[53] = new Fingerprint(53,"1",new int[] {7,8,9,4,1});
         fingerprints[54] = new Fingerprint(54,"1",new int[] {7,8,9,4,2});
         fingerprints[55] = new Fingerprint(55,"1",new int[] {7,8,9,4,3});
