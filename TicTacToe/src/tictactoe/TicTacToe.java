@@ -50,6 +50,10 @@ public class TicTacToe {
         System.out.println("1s: "+numberof1);
         System.out.println("no. of numbers in string: "+(numberof8+numberof4+numberof2+numberof1));
         
+        
+        
+        
+        
     }
 
     

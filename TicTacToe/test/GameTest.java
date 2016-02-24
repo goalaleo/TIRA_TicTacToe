@@ -31,7 +31,7 @@ public class GameTest {
     public void testSymmetries0() {
 
         //F0 symmetries
-        Fingerprint f0 = peli.fingerprints[0];
+        Fingerprint f0 = peli.fprintLibrary.fingerprints[0];
         assertTrue(f0.horizontal_symmetry);
         assertTrue(f0.vertical_symmetry);
         assertTrue(f0.diagonal_1_symmetry);
@@ -42,7 +42,7 @@ public class GameTest {
     public void testSymmetries1() {
 
         //F1 symmetries
-        Fingerprint f1 = peli.fingerprints[1];
+        Fingerprint f1 = peli.fprintLibrary.fingerprints[1];
         assertFalse(f1.horizontal_symmetry);
         assertFalse(f1.vertical_symmetry);
         assertTrue(f1.diagonal_1_symmetry);
@@ -53,7 +53,7 @@ public class GameTest {
     public void testSymmetries2() {
 
         //F2 symmetries
-        Fingerprint f2 = peli.fingerprints[2];
+        Fingerprint f2 = peli.fprintLibrary.fingerprints[2];
         assertFalse(f2.horizontal_symmetry);
         assertTrue(f2.vertical_symmetry);
         assertFalse(f2.diagonal_1_symmetry);
@@ -64,7 +64,7 @@ public class GameTest {
     public void testSymmetries4() {
 
         //F4 symmetries
-        Fingerprint f4 = peli.fingerprints[4];
+        Fingerprint f4 = peli.fprintLibrary.fingerprints[4];
         assertFalse(f4.horizontal_symmetry);
         assertFalse(f4.vertical_symmetry);
         assertFalse(f4.diagonal_1_symmetry);
@@ -75,7 +75,7 @@ public class GameTest {
     public void testSymmetries27() {
 
         //F27 symmetries
-        Fingerprint f27 = peli.fingerprints[27];
+        Fingerprint f27 = peli.fprintLibrary.fingerprints[27];
         assertTrue(f27.horizontal_symmetry);
         assertTrue(f27.vertical_symmetry);
         assertFalse(f27.diagonal_1_symmetry);
@@ -105,11 +105,11 @@ public class GameTest {
         ArrayList<Integer> ids2 = new ArrayList<>();
         ArrayList<Integer> ids1 = new ArrayList<>();
         
-        assertEquals(102, peli.fingerprints.length);
-        
-        for (Fingerprint fprint : peli.fingerprints) {
+        assertEquals(102, peli.fprintLibrary.fingerprints.length);
+        int i = 1;
+        for (Fingerprint fprint : peli.fprintLibrary.fingerprints) {
             //no symmetries
-            if (!fprint.horizontal_symmetry && !fprint.vertical_symmetry && !fprint.diagonal_1_symmetry && !fprint.diagonal_2_symmetry) {
+            if ((fprint.horizontal_symmetry == false) && (fprint.vertical_symmetry == false) && (fprint.diagonal_1_symmetry == false) && (fprint.diagonal_2_symmetry == false)) {
                 configurations += 8;
                 numberOf8s++;
                 ids8.add(fprint.id);
@@ -129,17 +129,24 @@ public class GameTest {
                 numberOf1s++;
                 ids1.add(fprint.id);
             }
-            System.out.println(ids8);
+            
+            System.out.println("after round: "+i);
+            System.out.println("number of 8s: "+ids8);
+            System.out.println("number of 4s: "+ids4);
+            System.out.println("number of 2s: "+ids2);
+            System.out.println("number of 1s: "+ids1);
+            System.out.println("--------------------");
+            i++;
         }
         System.out.println("8s: "+ids8);
         System.out.println("4s: "+ids4);
-        System.out.println("2s: "+ids8);
-        System.out.println("1s: "+ids8);
+        System.out.println("2s: "+ids2);
+        System.out.println("1s: "+ids1);
 //        assertEquals(36, numberOf8s); //was 40
-        assertEquals(50, numberOf4s);
-//        assertEquals(8, numberOf2s);  //was 6
-//        assertEquals(8, numberOf1s);  //was 4
-//        assertEquals(102, (numberOf1s+numberOf2s+numberOf4s+numberOf8s));  //was 100
+//        assertEquals(50, numberOf4s); //was 48
+        assertEquals(8, numberOf2s);  //was 6
+        assertEquals(8, numberOf1s);  //was 4
+        assertEquals(102, (numberOf1s+numberOf2s+numberOf4s+numberOf8s));  //was 100
         assertEquals(512, configurations);
     }
 
@@ -150,19 +157,19 @@ public class GameTest {
      */
     @Test
     public void testMirroringAndExactMatch() {
-        Fingerprint original = peli.fingerprints[1];
+        Fingerprint original = peli.fprintLibrary.fingerprints[1];
         Fingerprint mirrored = mirrorOverAxis(original);
         assertEquals(true, exactMatch(original, mirrored));
 
-        original = peli.fingerprints[2];
+        original = peli.fprintLibrary.fingerprints[2];
         mirrored = mirrorOverAxis(original);
         assertEquals(false, exactMatch(original, mirrored));
 
-        original = peli.fingerprints[4];
+        original = peli.fprintLibrary.fingerprints[4];
         mirrored = mirrorOverAxis(original);
         assertEquals(false, exactMatch(original, mirrored));
 
-        original = peli.fingerprints[36];
+        original = peli.fprintLibrary.fingerprints[36];
         mirrored = mirrorOverAxis(original);
         assertEquals(false, exactMatch(original, mirrored));
 
@@ -170,18 +177,18 @@ public class GameTest {
 
     @Test
     public void testRotatingAndExactMatch() {
-        Fingerprint original = peli.fingerprints[1];
+        Fingerprint original = peli.fprintLibrary.fingerprints[1];
         Fingerprint rotated = rotateClockwise(original);
         assertEquals(false, exactMatch(original, rotated));
 
-        original = peli.fingerprints[27];
+        original = peli.fprintLibrary.fingerprints[27];
         Fingerprint rotatedTwice = rotateClockwise(rotateClockwise(original));
         assertEquals(true, exactMatch(original, rotatedTwice));
     }
     
     @Test
     public void matchesAreOfCorrectAmount(){
-        for (Fingerprint fprint : peli.fingerprints) {
+        for (Fingerprint fprint : peli.fprintLibrary.fingerprints) {
             int uniques = uniqueIsomorphisms(fprint);
             assertTrue(uniques == 1
             || uniques == 2
